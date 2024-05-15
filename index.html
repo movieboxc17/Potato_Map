@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-measure/dist/leaflet-measure.css" />
     <style>
-       body {
+        body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -216,9 +216,9 @@
         }).addTo(map);
 
         // Listen for clicks on the map and place markers
-        map.on('click', function (e) {
-            var marker = L.marker(e.latlng, { draggable: true, icon: customMarkerIcon }).addTo(map);
-            marker.bindPopup("Coordinates: " + e.latlng.toString() +
+        map.on('touchstart', function (e) {
+            var marker = L.marker(map.mouseEventToLatLng(e.originalEvent), { draggable: true, icon: customMarkerIcon }).addTo(map);
+            marker.bindPopup("Coordinates: " + map.mouseEventToLatLng(e.originalEvent).toString() +
                              `<br><button class="custom-popup-button" onclick='removeMarker(${markers.length})'>Delete</button>`)
                    .openPopup();
 
